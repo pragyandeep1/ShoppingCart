@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Items</title>
+</head>
+<body>
+    <h1>Shopping Cart Items</h1>
+    {% if request.COOKIES %}
+      <table border="3">
+          <thead>
+              <tr>
+                  <th>Item Name</th>
+                  <th>Quantity</th>
+              </tr>
+          </thead>
+          {% for key,value in request.COOKIES.items %}
+              {% if key != 'csrftoken' %}
+                  <tr>
+                      <td>{{key}}</td>
+                      <td>{{value}}</td>
+                  </tr>
+              {% endif %}
+          {% endfor %}
+      </table>
+    {% else %}
+        <p>No items available in the shopping cart.</p>
+    {% endif %}
+</body>
+</html>
